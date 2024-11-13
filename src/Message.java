@@ -99,7 +99,8 @@ public abstract class Message {
 	}
 
 	public String toString() {
-		return "This is a Message";
+		return "BoardMessage {" + "sender='" + getSender() + '\'' + ", content='" + getContent() + '\'' + ", sendDate="
+				+ getSendDate() + ", status='" + getStatus() + '\'';
 	}
 
 	// Abstract Method

@@ -1,28 +1,62 @@
 import java.util.Date;
 
 public class BoardMessage extends Message {
-	private String subject;
+	private String category;
+	private Priority priority;
 
-//	C'tor
-	public BoardMessage(String sender, String content, Date sendDate, String status, String subject)
+	public enum Priority {
+		urgent, regular, spam;
+	}
+
+//	C'tor #1
+	public BoardMessage(String sender, String content, Date sendDate, String status, String category)
 			throws IllegalArgumentException {
 		super(sender, content, sendDate, status);
-		setSubject(subject);
+		setCategory(category);
 	}
 
-	public String getSubject() {
-		return subject;
+//	C'tor #2
+	public BoardMessage(String sender, String content, String status, String category) throws IllegalArgumentException {
+		super(sender, content, status);
+		setCategory(category);
 	}
 
-	public void setSubject(String subject) throws IllegalArgumentException {
-		if (subject == null || subject.isEmpty()) {
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) throws IllegalArgumentException {
+		if (category == null || category.isEmpty()) {
 			throw new IllegalArgumentException("Subject cannot be null or empty.");
 		}
-		this.subject = subject;
+		this.category = category;
+	}
+
+	public void setPriority(Priority priority) throws IllegalArgumentException {
+
+		if (priority == null) {
+			throw new IllegalArgumentException("Subject cannot be null or empty.");
+		}
+		this.priority = priority;
+	}
+
+	public Priority getPriority() {
+		return priority;
+	}
+
+	// New method to check if the message is high-priority
+	public boolean isHighPriority() {
+		return this.priority == Priority.urgent;
 	}
 
 	@Override
+	public String toString() {
+		return "BoardMessage {" + "sender='" + getSender() + '\'' + ", content='" + getContent() + '\'' + ", sendDate="
+				+ getSendDate() + ", status='" + getStatus() + '\'' + ", priority=" + priority + ", category='"
+				+ category + '\'' + '}';
+	}
+
 	public String getMessageType() {
-		return "Board";
+		return "Board Message";
 	}
 }
