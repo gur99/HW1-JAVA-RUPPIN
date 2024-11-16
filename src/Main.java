@@ -9,6 +9,8 @@ public class Main {
 
 		Date d1 = new Date();
 		System.out.println(d1);
+		File f = new File("maccabi", "yitzhaki");
+		System.out.println(f.toString());
 	}
 
 }
