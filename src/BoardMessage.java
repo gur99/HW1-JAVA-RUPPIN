@@ -4,20 +4,21 @@ public class BoardMessage extends Message {
 	private String category;
 	private Priority priority;
 
-	public enum Priority {
-		urgent, regular, spam;
-	}
+	// Place for Permanent Item--> {Instance Initializer}
 
 //	C'tor #1
-	public BoardMessage(String sender, String content, Date sendDate, String status, String category)
+	public BoardMessage(String sender, String content, Date sendDate, String status, String category, Priority priority)
 			throws IllegalArgumentException {
 		super(sender, content, sendDate, status);
+		setPriority(priority);
 		setCategory(category);
 	}
 
-//	C'tor #2
-	public BoardMessage(String sender, String content, String status, String category) throws IllegalArgumentException {
+//	C'tor #2 without 'Date' argument
+	public BoardMessage(String sender, String content, String status, String category, Priority priority)
+			throws IllegalArgumentException {
 		super(sender, content, status);
+		setPriority(priority);
 		setCategory(category);
 	}
 
@@ -46,7 +47,7 @@ public class BoardMessage extends Message {
 
 	// New method to check if the message is high-priority
 	public boolean isHighPriority() {
-		return this.priority == Priority.urgent;
+		return this.priority == Priority.URGENT;
 	}
 
 	@Override

@@ -30,8 +30,9 @@ public class File {
 		return FileType;
 	}
 
+	@Override
 	public String toString() {
-		return "File Type: " + getFileType() + "\n" + "File Name: " + getFileName();
+		return "<File Name: " + getFileName() + "File Type: " + getFileType() + ">";
 	}
 
 }
