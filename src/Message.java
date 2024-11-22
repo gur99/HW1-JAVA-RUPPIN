@@ -68,19 +68,20 @@ public abstract class Message {
 
 	public void setStatus(String status) throws IllegalArgumentException {
 
-		if (status == null || (!status.equals("sent") && !status.equals("draft") && !status.equals("read")
-				&& !status.equals("unread"))) {
-			throw new IllegalArgumentException("Invalid status. Allowed values: sent, draft, read, unread.");
+		if (status == null || (status.isBlank())) {
+			throw new IllegalArgumentException("Status cannot be empty or contain only space.");
 		}
 		this.status = status;
 	}
 
 	public boolean find(String[] words) {
-		if (words == null || words.length == 0) {
+
+		String contentLower = content.toLowerCase();
+		if (words == null || words.length == 0)
 			return false;
-		}
+
 		for (String word : words) {
-			if (word != null && content.contains(word)) {
+			if (contentLower.contains(word.toLowerCase())) {
 				return true;
 			}
 		}

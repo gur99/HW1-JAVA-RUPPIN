@@ -27,7 +27,7 @@ public class BoardMessage extends Message {
 	}
 
 	public void setCategory(String category) throws IllegalArgumentException {
-		if (category == null || category.isEmpty()) {
+		if (category == null || category.isEmpty() || category.isBlank()) {
 			throw new IllegalArgumentException("Subject cannot be null or empty.");
 		}
 		this.category = category;
