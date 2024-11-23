@@ -100,7 +100,7 @@ public abstract class Message {
 	}
 
 	public String toString() {
-		return "BoardMessage {" + "sender='" + getSender() + '\'' + ", content='" + getContent() + '\'' + ", sendDate="
+		return "Message: {" + "sender='" + getSender() + '\'' + ", content='" + getContent() + '\'' + ", sendDate="
 				+ getSendDate() + ", status='" + getStatus() + '\'';
 	}
 

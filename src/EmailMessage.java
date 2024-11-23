@@ -58,15 +58,13 @@ public class EmailMessage extends Message implements IDigital {
 
 	@Override
 	public String getMessageType() {
-		return "This is an Email-Message.";
+		return "Email-Message.";
 	}
 
 	@Override
 	public String toString() {
 
-		return "EmailMessage{" + "sender='" + getSender() + '\'' + ", content='" + getContent() + '\'' + ", sendDate="
-				+ getSendDate() + ", status='" + getStatus() + '\'' + ", subject='" + subject + '\''
-				+ ", attachments=\n " + attachments + '}';
+		return super.toString() + '\'' + ", subject='" + subject + '\'' + ", attachments=\n " + attachments + '}';
 	}
 
 	// Implements for IDigital abstract method

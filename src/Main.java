@@ -1,3 +1,4 @@
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
@@ -35,6 +36,17 @@ public class Main {
 		messages.add(bm1);
 		messages.add(bm2);
 
+		// SMS Message Type
+		try {
+			SMS sms1 = new SMS("jack", "hello", "hay", "0545586666");
+			SMS sms2 = new SMS("Dan", "whatsappppp", "hay", "0549123123");
+			messages.add(sms1);
+			messages.add(sms2);
+
+		} catch (SMSException e) {
+			System.out.println("Error adding SMS message: " + e.getMessage());
+		}
+
 		Scanner scanner = new Scanner(System.in);
 		int choice;
 
@@ -45,7 +57,7 @@ public class Main {
 			System.out.println("3. Delete a message");
 			System.out.println("4. Search for messages by word");
 			System.out.println("5. Print all digital messages");
-			System.out.println("6. Another option of your choice");
+			System.out.println("6. Calculate SMS cost (of all SMSs 0.05 per char)");
 			System.out.println("7. Exit");
 			System.out.print("Choose an option: ");
 
@@ -63,7 +75,7 @@ public class Main {
 						System.out.println("\nChoose the type of message to add:");
 						System.out.println("1. Email Message");
 						System.out.println("2. Board Message");
-						System.out.println("3. Add new Option(New Class)");
+						System.out.println("3. SMS");
 						int messageType = Integer.parseInt(scanner.nextLine());
 
 						System.out.print("Enter sender: ");
@@ -137,8 +149,18 @@ public class Main {
 							System.out.println("Board message added successfully.");
 							break;
 
-						case 3:
-							// New Class
+						case 3: // SMS
+							System.out.print("Enter phone number: ");
+							String phoneNumber = scanner.nextLine();
+
+							try {
+								SMS newSMSMessage = new SMS(sender, content, status, phoneNumber);
+								messages.add(newSMSMessage);
+								System.out.println("SMS message added successfully.");
+								System.out.println("Details:\n" + newSMSMessage);
+							} catch (SMSException e) {
+								System.out.println("Error adding SMS message: " + e.getMessage());
+							}
 							break;
 
 						default:
@@ -159,6 +181,7 @@ public class Main {
 
 						System.out.println("\nAll messages:");
 						for (Message message : messages) {
+							System.out.println(message.getMessageType());
 							System.out.println(message + "\n");
 
 						}
@@ -237,8 +260,30 @@ public class Main {
 					}
 
 				case 6:
-					// Another option of your choice
-					System.out.println("add any additional functionality here.");
+					if (messages.isEmpty()) {
+						System.out.println("\nNo messages available.");
+					} else {
+						double totalCost = 0.0;
+						boolean hasSMS = false;
+
+						System.out.println("\nSMS Cost Analysis:");
+						for (Message message : messages) {
+							if (message instanceof SMS) {
+								hasSMS = true;
+								SMS sms = (SMS) message;
+								double cost = sms.calculateCost();
+								totalCost += cost;
+
+								System.out.println(sms);
+								System.out.println("Cost: $" + String.format("%.2f", cost));
+							}
+						}
+						if (!hasSMS) {
+							System.out.println("\nNo SMS messages found.");
+						} else {
+							System.out.println("\nTotal Cost of All SMS: $" + String.format("%.2f", totalCost));
+						}
+					}
 					break;
 
 				case 7:

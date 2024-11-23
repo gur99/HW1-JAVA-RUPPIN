@@ -1,3 +1,4 @@
+
 import java.util.Date;
 
 public class BoardMessage extends Message {
@@ -52,9 +53,7 @@ public class BoardMessage extends Message {
 
 	@Override
 	public String toString() {
-		return "BoardMessage {" + "sender='" + getSender() + '\'' + ", content='" + getContent() + '\'' + ", sendDate="
-				+ getSendDate() + ", status='" + getStatus() + '\'' + ", priority=" + priority + ", category='"
-				+ category + '\'' + '}';
+		return super.toString() + ", priority=" + priority + ", category='" + category + '\'' + '}';
 	}
 
 	public String getMessageType() {
