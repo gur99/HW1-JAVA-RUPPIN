@@ -31,7 +31,7 @@ public class SMS extends Message implements IDigital {
 		this.phoneNumber = phoneNumber;
 	}
 
-	private void validatePhoneNumber(String phoneNumber) throws SMSException {
+	public void validatePhoneNumber(String phoneNumber) throws SMSException {
 		try {
 			if (!isValidPhoneNumber(phoneNumber)) {
 				throw new IllegalArgumentException("Phone number format is invalid.");
@@ -41,7 +41,7 @@ public class SMS extends Message implements IDigital {
 		}
 	}
 
-	private boolean isValidPhoneNumber(String phoneNumber) {
+	public boolean isValidPhoneNumber(String phoneNumber) {
 		return phoneNumber.matches("\\+?[0-9]{10,15}");
 	}
 
@@ -54,12 +54,15 @@ public class SMS extends Message implements IDigital {
 //		}
 //	}
 	public double calculateCost() {
-		return getContent().length() * pricePerChar;
+		if (getStatus().equals("send")) {
+			return getContent().length() * pricePerChar;
+		}
+		return 0;
 	}
 
 	@Override
 	public void printCommunicationMethod() {
-		System.out.println("Communication Method: SMS");
+		System.out.println("This message is sent via SMS.");
 	}
 
 	@Override

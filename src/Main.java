@@ -19,17 +19,17 @@ public class Main {
 
 		// Email Message Type
 		files.add(f1);
-		EmailMessage em1 = new EmailMessage("Miguel", "Mi Amore it's Miguel", d1, "sent", "Letter", files);
+		EmailMessage em1 = new EmailMessage("Miguel", "Mi Amore it's Miguel", d1, "send", "Letter", files);
 		files.remove(0);
 		files.add(f2);
-		EmailMessage em2 = new EmailMessage("Kamil", "Mi Amore it's Kamil", d1, "sent", "Letter", files);
+		EmailMessage em2 = new EmailMessage("Kamil", "Mi Amore it's Kamil", d1, "send", "Letter", files);
 
 		// Board Message Type
 //		Priority priority1 = Priority.REGULAR;
 //		Priority priority2 = Priority.URGENT;
 
-		BoardMessage bm1 = new BoardMessage("Joey", "How you doin'?", d1, "sent", "letter", Priority.REGULAR);
-		BoardMessage bm2 = new BoardMessage("Chandler", "Where's the ducks?", d1, "sent", "Question", Priority.URGENT);
+		BoardMessage bm1 = new BoardMessage("Joey", "How you doin'?", d1, "send", "letter", Priority.REGULAR);
+		BoardMessage bm2 = new BoardMessage("Chandler", "Where's the ducks?", d1, "send", "Question", Priority.URGENT);
 
 		messages.add(em1);
 		messages.add(em2);
@@ -38,8 +38,8 @@ public class Main {
 
 		// SMS Message Type
 		try {
-			SMS sms1 = new SMS("jack", "hello", "hay", "0545586666");
-			SMS sms2 = new SMS("Dan", "whatsappppp", "hay", "0549123123");
+			SMS sms1 = new SMS("jack", "hello", "draft", "0545586666");
+			SMS sms2 = new SMS("Dan", "whatsappppp", "send", "0549123123");
 			messages.add(sms1);
 			messages.add(sms2);
 
@@ -84,7 +84,7 @@ public class Main {
 						System.out.print("Enter content: ");
 						String content = scanner.nextLine();
 
-						System.out.print("Enter status: ");
+						System.out.print("Enter status:(send/draft) ");
 						String status = scanner.nextLine();
 
 						switch (messageType) {
@@ -114,7 +114,7 @@ public class Main {
 							break;
 
 						case 2: // Board Message
-							System.out.println("Enter category: ");
+							System.out.print("Enter category: ");
 							String category = scanner.nextLine();
 
 							System.out.println("Choose Priority: ");
@@ -246,10 +246,7 @@ public class Main {
 							if (message instanceof IDigital) {
 								hasDigitalMessages = true;
 								System.out.println(message);
-								if (message instanceof EmailMessage) {
-									EmailMessage temp = (EmailMessage) message;
-									temp.printCommunicationMethod();
-								}
+								((IDigital) message).printCommunicationMethod();
 							}
 							System.out.println();
 						}

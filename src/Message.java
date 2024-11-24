@@ -68,8 +68,8 @@ public abstract class Message {
 
 	public void setStatus(String status) throws IllegalArgumentException {
 
-		if (status == null || (status.isBlank())) {
-			throw new IllegalArgumentException("Status cannot be empty or contain only space.");
+		if (status == null || (!status.equals("send") && !status.equals("draft"))) {
+			throw new IllegalArgumentException("Incorrect Status Format.(draft or send)");
 		}
 		this.status = status;
 	}
