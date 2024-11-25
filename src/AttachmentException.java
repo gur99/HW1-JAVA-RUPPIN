@@ -8,10 +8,6 @@ public class AttachmentException extends Exception {
 		super(message);
 	}
 
-//	public String AttachmentException() {
-//		return "error";
-//	}
-
 //	public AttachmentException(Throwable cause) {
 //		super(cause);
 //	}

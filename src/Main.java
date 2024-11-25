@@ -42,6 +42,8 @@ public class Main {
 			SMS sms2 = new SMS("Dan", "whatsappppp", "send", "0549123123");
 			messages.add(sms1);
 			messages.add(sms2);
+			// implementation of SUMMARIZE METHOD
+			// System.out.println(sms2.summarize(3));
 
 		} catch (SMSException e) {
 			System.out.println("Error adding SMS message: " + e.getMessage());
@@ -165,6 +167,7 @@ public class Main {
 
 						default:
 							System.out.println("Invalid message type. Returning to menu.");
+
 						}
 
 					} catch (Exception e) {

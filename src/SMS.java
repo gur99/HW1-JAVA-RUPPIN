@@ -37,12 +37,13 @@ public class SMS extends Message implements IDigital {
 				throw new IllegalArgumentException("Phone number format is invalid.");
 			}
 		} catch (IllegalArgumentException e) {
-			throw new SMSException("Invalid phone number: " + phoneNumber, e);
+			throw new SMSException(
+					"Invalid phone number: " + phoneNumber + "\nPhone number must include exactly 10 digits\n", e);
 		}
 	}
 
 	public boolean isValidPhoneNumber(String phoneNumber) {
-		return phoneNumber.matches("\\+?[0-9]{10,15}");
+		return phoneNumber.matches("\\+?[0-9]{10}");
 	}
 
 //	public void editContent(String newContent) {
